@@ -14,8 +14,8 @@ checks it from this repository alone.
   z(15, 22) ≥ 150, z(15, 23) ≥ 156 — each checked by the verifier. They were found independently; in every cell they
   reproduce the best bound of Norris (2026) and Borsik (2025), and they exceed the bounds of Bhan–Nobili–Langer and
   Saurabh (2026). Matrices for the eight other cells the same search covered are in `witness/other-cells/`.
-- **Origin:** a test task for AperioBot, an add-on for AI agents created by the author, a lawyer at the Aperio Bar
-  Association; AI assistance is disclosed in §9 of the note.
+- **Origin:** a test task for AperioBot, an add-on for AI agents created by the author, a lawyer at
+  Aperio Law Firm (Код ЄДРПОУ: 44031724); AI assistance is disclosed in §9 of the note.
 
 ## How the proof goes
 

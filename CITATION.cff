@@ -5,6 +5,7 @@ type: dataset
 authors:
   - family-names: "Fedorenko"
     given-names: "Oleg"
+    affiliation: "Aperio Law Firm, Код ЄДРПОУ: 44031724"
     # orcid: "https://orcid.org/0000-0000-0000-0000"
 version: "1.0"
 date-released: "2026-10-25"
