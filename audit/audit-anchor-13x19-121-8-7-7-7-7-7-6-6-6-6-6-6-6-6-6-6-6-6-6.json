@@ -1,0 +1,62 @@
+{
+ "cell": "13x19",
+ "T": 121,
+ "profile": [
+  8,
+  7,
+  7,
+  7,
+  7,
+  7,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6,
+  6
+ ],
+ "window": [
+  55,
+  74
+ ],
+ "cuts": {
+  "1": 7,
+  "2": 15,
+  "3": 23
+ },
+ "extra": {},
+ "cubes": 203,
+ "patterns.json equal to a fresh enumeration": true,
+ "certified": {
+  "whole": 203,
+  "sub-cubes": 0,
+  "lrat": 0,
+  "mixed whole": 0
+ },
+ "strict LRAT checker (sha256, after its self-test)": "4002bd31677209c6",
+ "sub-cubes checked": 0,
+ "problems": [],
+ "number of problems": 0,
+ "recheck": {
+  "certificates/z13x19-ge121/anchor-8-7-7-7-7-7-6-6-6-6-6-6-6-6-6-6-6-6-6/cube-00135": "VERIFIED",
+  "certificates/z13x19-ge121/anchor-8-7-7-7-7-7-6-6-6-6-6-6-6-6-6-6-6-6-6/cube-00098": "VERIFIED",
+  "certificates/z13x19-ge121/anchor-8-7-7-7-7-7-6-6-6-6-6-6-6-6-6-6-6-6-6/cube-00054": "VERIFIED",
+  "certificates/z13x19-ge121/anchor-8-7-7-7-7-7-6-6-6-6-6-6-6-6-6-6-6-6-6/cube-00093": "VERIFIED",
+  "certificates/z13x19-ge121/anchor-8-7-7-7-7-7-6-6-6-6-6-6-6-6-6-6-6-6-6/cube-00137": "VERIFIED",
+  "certificates/z13x19-ge121/anchor-8-7-7-7-7-7-6-6-6-6-6-6-6-6-6-6-6-6-6/cube-00023": "VERIFIED",
+  "certificates/z13x19-ge121/anchor-8-7-7-7-7-7-6-6-6-6-6-6-6-6-6-6-6-6-6/cube-00063": "VERIFIED",
+  "certificates/z13x19-ge121/anchor-8-7-7-7-7-7-6-6-6-6-6-6-6-6-6-6-6-6-6/cube-00153": "VERIFIED",
+  "certificates/z13x19-ge121/anchor-8-7-7-7-7-7-6-6-6-6-6-6-6-6-6-6-6-6-6/cube-00002": "VERIFIED",
+  "certificates/z13x19-ge121/anchor-8-7-7-7-7-7-6-6-6-6-6-6-6-6-6-6-6-6-6/cube-00147": "VERIFIED",
+  "certificates/z13x19-ge121/anchor-8-7-7-7-7-7-6-6-6-6-6-6-6-6-6-6-6-6-6/cube-00185": "VERIFIED",
+  "certificates/z13x19-ge121/anchor-8-7-7-7-7-7-6-6-6-6-6-6-6-6-6-6-6-6-6/cube-00061": "VERIFIED"
+ },
+ "recheck lrat": {}
+}

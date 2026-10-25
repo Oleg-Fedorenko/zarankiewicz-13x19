@@ -1,0 +1,69 @@
+--- lrat-check.c	2026-10-16 21:31:16
++++ lrat-check-strict.c	2026-10-23 14:10:27
+@@ -1,3 +1,11 @@
++// lrat-check-strict: lrat-check.c of drat-trim (commit 2e3b2dc0ecf9) with two changes, both of which only refuse more.
++// 1. Every added clause, the empty clause included, must be RUP through its hints: the hints, taken in order, end in a
++//    conflict. The original also accepted a clause with no conflict when no clause with the negated first literal was
++//    known (a pure-literal step), and that test let an empty clause with arbitrary hints through: a satisfiable CNF
++//    with the proof "3 0 0" was VERIFIED. RAT steps are not accepted either (CaDiCaL's LRAT does not need them).
++// 2. Numbers are read as decimal 64-bit values and refused outside the range of int (the original read them with
++//    %i into an int: an id of 5000000000 wrapped around, 010 was read as octal).
++#define STRICT 1
+ /************************************************************************************[lrat-check.c]
+ Copyright (c) 2017-2023 Marijn Heule, Carnegie Mellon University
+ Last edit: July 2023
+@@ -153,6 +161,7 @@
+ 
+   if (res == CONFLICT) { return SUCCESS; }
+   if (res == FAILED  ) { return FAILED;  }
++  if (STRICT) { printf ("c FAILED: no conflict from the hints (strict: RUP only)\n"); return FAILED; }
+ 
+   int *first = hints; first++; while (*first > 0) first++;
+   int start = intro[pivot ^ 1];
+@@ -315,6 +324,12 @@
+   }
+   litList[litCount++] = lit; }
+ 
++static int readNumber (FILE* file, const char* format, int* out) { // format: " %lld " or " d %lld "
++  long long v; int tmp = fscanf (file, format, &v);
++  if (tmp != 1) return tmp;
++  if (v > 2147483647LL || v < -2147483647LL) { printf ("c ERROR: number %lld out of range\n", v); exit (2); }
++  *out = (int) v; return 1; }
++
+ int parseLine (FILE* file, int mode, int line) {
+   int lit, tmp;
+   litCount = 0;
+@@ -331,7 +346,7 @@
+   if (mode == CNF) {
+     line++;
+     while (1) {
+-      tmp = fscanf (file, " %i ", &lit);
++      tmp = readNumber (file, " %lld ", &lit);
+       if (tmp == 0 || tmp == EOF) return 0;
+       int clit = convertLit (lit);
+       if (intro[clit] == 0) {
+@@ -343,13 +358,13 @@
+   if (mode == LRAT) {
+     int index;
+     int zeros = 2;
+-    tmp = fscanf (file, " %i ", &index);
++    tmp = readNumber (file, " %lld ", &index);
+ //    printf ("%lli ", index);
+ //    assert (index > 0);
+     if (tmp == 0 || tmp == EOF) return 0;
+     addLit ((int) index);
+ 
+-    tmp = fscanf (file, " d %i ", &lit);
++    tmp = readNumber (file, " d %lld ", &lit);
+     if (tmp == 1) {
+       addLit ((int) 'd');
+       addLit (lit);
+@@ -362,7 +377,7 @@
+     else { addLit((int) 'a'); }
+ 
+     while (1) {
+-      tmp = fscanf (file, " %i ", &lit);
++      tmp = readNumber (file, " %lld ", &lit);
+       if (tmp == 0 || tmp == EOF) return 0;
+       addLit(lit);
+       if (lit   == 0) zeros--;

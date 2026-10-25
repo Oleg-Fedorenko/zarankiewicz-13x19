@@ -218,3 +218,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# this repository
+tools/cadical
+tools/lrat-check-strict
+tools/drat-trim
+tools/kissat
+tools/glucose_release
+verify-report.json
+.DS_Store

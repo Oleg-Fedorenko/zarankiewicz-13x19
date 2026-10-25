@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Zarankiewicz number z(13, 19; 3, 3) equals 120</title>
+<style>
+@page { size: A4; margin: 20mm 19mm 21mm 19mm; @bottom-center { content: counter(page); font: 9pt "STIX Two Text", "Times New Roman", serif; color: #444; } }
+html { font-family: "STIX Two Text", "Times New Roman", Times, serif; font-size: 10.4pt; line-height: 1.36; color: #111; }
+body { margin: 0; }
+h1 { font-size: 16.5pt; font-weight: 600; text-align: center; margin: 0 0 4pt; line-height: 1.2; }
+.sub { text-align: center; font-size: 10pt; margin: 0 0 2pt; }
+.meta { text-align: center; font-size: 9.2pt; color: #333; margin: 0 0 10pt; }
+.abstract { margin: 0 8mm 9pt; font-size: 9.6pt; }
+.abstract b { font-variant: small-caps; }
+h2 { font-size: 11.2pt; margin: 11pt 0 3pt; font-weight: 600; }
+h2 .n { display: inline-block; min-width: 1.5em; }
+p { margin: 0 0 5pt; text-align: justify; hyphens: auto; }
+.thm { margin: 6pt 0; padding: 4pt 8pt; border-left: 2px solid #333; font-style: italic; }
+.thm b { font-style: normal; }
+.lemma { margin: 4pt 0 5pt; }
+.lemma > b { font-weight: 600; }
+.lemma i.t { font-style: italic; }
+ul, ol { margin: 0 0 5pt 1.2em; padding: 0; }
+li { margin: 0 0 2pt; text-align: justify; }
+table { border-collapse: collapse; margin: 5pt auto 3pt; font-size: 9pt; }
+th, td { padding: 1.4pt 6pt; text-align: left; vertical-align: top; }
+thead th { border-top: 1.2px solid #000; border-bottom: 0.6px solid #000; font-weight: 600; }
+tbody tr:last-child td { border-bottom: 1.2px solid #000; }
+td.r, th.r { text-align: right; }
+tr.ours td { font-weight: 600; }
+.cap { text-align: center; font-size: 8.8pt; margin: 0 0 7pt; }
+code, .tt { font-family: Menlo, "SF Mono", monospace; font-size: 8.4pt; }
+.eq { display: block; text-align: center; margin: 3pt 0 4pt; }
+.fn { font-size: 8.6pt; color: #333; }
+table.plain td { border: none !important; padding: 0.4pt 7pt 0.4pt 0; }
+.refs { font-size: 8.8pt; padding-left: 2.4em; margin-left: 0; }
+.refs li { margin-bottom: 1.5pt; }
+.ph { background: #fff3b0; }
+var { font-style: italic; }
+sub, sup { font-size: 72%; line-height: 0; }
+.avoid { break-inside: avoid; }
+</style>
+</head>
+<body>
+
+<h1>The Zarankiewicz number <var>z</var>(13, 19; 3, 3) equals 120</h1>
+<div class="sub">Research note</div>
+<div class="sub">Oleg Fedorenko · Aperio Bar Association</div>
+<div class="meta">25 October 2026 · version 1 · data, code and audit logs: <a href="https://github.com/Oleg-Fedorenko/zarankiewicz-13x19" style="color:inherit">github.com/Oleg-Fedorenko/zarankiewicz-13x19</a> · doi:<a href="https://doi.org/10.5281/zenodo.23637633" style="color:inherit">10.5281/zenodo.23637633</a></div>
+
+<div class="abstract"><b>Abstract.</b> The Zarankiewicz number <var>z</var>(<var>m</var>, <var>n</var>; 3, 3) is the largest number of ones in an <var>m</var>&thinsp;×&thinsp;<var>n</var> 0/1 matrix with no 3&thinsp;×&thinsp;3 submatrix of ones. We prove <var>z</var>(13, 19; 3, 3) = 120. Matrices with 120 ones were known; the best published upper bound was 122. The proof that no such matrix has 121 ones is computer-assisted and certified throughout. A counting argument leaves 30 column-degree profiles. Twenty-six are refuted by SAT solving with DRAT proofs. The four most uniform profiles are split into 2&thinsp;478 <em>anchor cubes</em> — by how the other columns meet a column of maximum degree — and the hardest cubes into 58&thinsp;186 <em>sub-cubes</em> by fixing further columns in canonical order. Each sub-cube is refuted either by an exact rational Farkas certificate for a linear relaxation (32&thinsp;602 of them) or by SAT with a DRAT or LRAT proof. An audit regenerated every formula, compared it byte for byte with the certified one, and re-verified every Farkas certificate in exact arithmetic. On the way we found that the LRAT checker <span class="tt">lrat-check</span> accepts an unjustified final step; we used a strict variant. All data, code and logs are public.</div>
+
+<h2><span class="n">1</span>Result</h2>
+<p>The values of <var>z</var>(<var>m</var>, <var>n</var>; 3, 3) for <var>m</var>, <var>n</var> ≤ 18 were tabulated by Collins, Riasanovsky, Wallace and Radziszowski [9], building on the classical bound of Kővári, Sós and Turán [19]; recent work raised many lower bounds and settled several values beyond that range [1–8, 10]. The cell (13, 19) was open.</p>
+<div class="thm"><b>Theorem 1.</b> <var>z</var>(13, 19; 3, 3) = 120.</div>
+<p><em>Lower bound.</em> A 13&thinsp;×&thinsp;19 matrix with 120 ones and no 3&thinsp;×&thinsp;3 block of ones is in the repository (<span class="tt">witness/z-13-19-120.txt</span>; row degrees 12, 9<sup>12</sup>, column degrees 8, 7<sup>4</sup>, 6<sup>14</sup>); it was found by the search laboratory of AperioBot (§9), in which a language model writes the search programs, independently of Norris’s matrix [7]. <em>Upper bound.</em> Sections 2–6 show that no admissible 13&thinsp;×&thinsp;19 matrix has 121 ones; this suffices, since deleting ones keeps a matrix admissible. Table 1 lists what was known.</p>
+
+<table class="avoid">
+<thead><tr><th>Source</th><th class="r">year</th><th class="r">lower</th><th class="r">upper</th><th>remark</th></tr></thead>
+<tbody>
+<tr><td>Tan [5]</td><td class="r">2022</td><td class="r">—</td><td class="r">126</td><td>SAT-assisted table</td></tr>
+<tr><td>Davies, Gill, Horsley [10]</td><td class="r">2025</td><td class="r">—</td><td class="r">125</td><td>LP bounds (their Table 2)</td></tr>
+<tr><td>Borsik [8]</td><td class="r">2025</td><td class="r">119</td><td class="r">—</td><td>BSc thesis; matrices public</td></tr>
+<tr><td>Bhan, Nobili, Langer [1]</td><td class="r">2026</td><td class="r">114</td><td class="r">125</td><td>their Figure 2</td></tr>
+<tr><td>Afrasyab [3]; Hou [4]</td><td class="r">2026</td><td class="r">—</td><td class="r">122</td><td>from <var>z</var>(13, 18) = 116, deleting a column</td></tr>
+<tr><td>Saurabh [2]</td><td class="r">2026</td><td class="r">118</td><td class="r">125</td><td></td></tr>
+<tr><td>Norris [7]</td><td class="r">2026</td><td class="r">120</td><td class="r">122</td><td>simulated annealing</td></tr>
+<tr><td>Amaro [12]</td><td class="r">2026</td><td class="r">120</td><td class="r">122</td><td>found independently</td></tr>
+<tr><td>Padhi [11]</td><td class="r">2026</td><td class="r" colspan="2" style="text-align:center">“120 exact”</td><td>asserted without proof; withdrawn (see below)</td></tr>
+<tr class="ours"><td>This note</td><td class="r">2026</td><td class="r">120</td><td class="r">120</td><td>certified proof</td></tr>
+</tbody></table>
+<div class="cap">Table 1. Bounds for <var>z</var>(13, 19; 3, 3) in the literature (each source’s own table, checked on 25 October 2026).</div>
+
+<p><em>On [11].</em> This SSRN preprint lists <var>z</var>(13, 19; 3) = 120 among “44 new exact values”, with no proof or data. Of its twelve exact values in rows 12–14, eight are contradicted by published matrices with more ones — for instance it gives <var>z</var>(13, 20) = 124, while a matrix with 125 ones has been public since 2025 [8] — and its <var>z</var>(14, 18) = 115 contradicts its own <var>z</var>(13, 18) ≥ 116 (a row with two ones can always be added). Its Zenodo deposit was deleted as retracted. The value 120 there is therefore an assertion, not a result; we regard the proof below as the first.</p>
+
+<h2><span class="n">2</span>Reduction to 30 profiles</h2>
+<p>Write <var>r<sub>i</sub></var> and <var>c<sub>j</sub></var> for row and column degrees, C(<var>a</var>, <var>b</var>) for binomial coefficients, and call a matrix <em>admissible</em> if it has no 3&thinsp;×&thinsp;3 block of ones, i.e. any three rows share at most two columns and any three columns share at most two rows. Suppose <var>A</var> is admissible, 13&thinsp;×&thinsp;19, with 121 ones.</p>
+<div class="lemma"><b>Lemma 1 (deletion).</b> Deleting <var>a</var> rows and <var>b</var> columns of <var>A</var> leaves an admissible (13−<var>a</var>)&thinsp;×&thinsp;(19−<var>b</var>) matrix, so the deleted lines carry at least 121 − <var>z</var>(13−<var>a</var>, 19−<var>b</var>) ones (a one at a crossing counted once).</div>
+<p>We use eight upper bounds: <var>z</var>(13,18) ≤ 116, <var>z</var>(13,17) ≤ 110, <var>z</var>(13,16) ≤ 107, <var>z</var>(12,19) ≤ 114, <var>z</var>(11,19) ≤ 106, <var>z</var>(10,19) ≤ 98, <var>z</var>(12,18) ≤ 108 and <var>z</var>(11,17) ≤ 96. All follow from Table 4 of Collins, Riasanovsky, Wallace and Radziszowski [9] by the single-line case of Lemma 1 (a lightest line of an <var>m</var>&thinsp;×&thinsp;<var>n</var> matrix with <var>Z</var> ones has at most ⌊<var>Z</var>/<var>n</var>⌋ ones, so <var>Z</var> − ⌊<var>Z</var>/<var>n</var>⌋ ≤ <var>z</var>(<var>m</var>, <var>n</var>−1)), except <var>z</var>(12, 18) ≤ 108, which we proved separately: under cuts from [9] alone, a 12&thinsp;×&thinsp;18 matrix with 109 ones has the single column profile (7, 6<sup>17</sup>), refuted by Glucose 4.2.1 [16] with a 2.7&nbsp;GB DRAT proof verified by drat-trim [14] (it is also claimed in [3, 4]). With it, the upper bound rests on [9] and on our certificates only.</p>
+<p>Lemma 1 with single lines gives: every <var>k</var> columns of <var>A</var> hold at least 5, 11, 14 ones and every <var>k</var> rows at least 7, 15, 23 ones (<var>k</var> = 1, 2, 3). Every triple of rows lies in at most two columns, so Σ<sub><var>j</var></sub> C(<var>c<sub>j</sub></var>, 3) ≤ 2&thinsp;C(13, 3) = 572. Exactly <b>30</b> multisets of column degrees with sum 121 satisfy these conditions (two independent enumerations agree). Each defines a case. Its formula has a variable per cell, a clause per choice of three rows and three columns forbidding nine ones, cardinality constraints fixing the column degrees and imposing the row cuts (one totalizer per row), and symmetry breaking: rows in lexicographic order, columns grouped by degree and lexicographically ordered within a degree class. This is sound because sorting rows, or swapping two adjacent equal-degree columns that violate the order, increases the matrix read row by row as a binary word, so a maximal element of every orbit satisfies all of it.</p>
+<p>Twenty-six cases were refuted whole by Glucose 4.2.1 (<span class="tt">-no-pre -certified</span>), each DRAT proof “s VERIFIED” by drat-trim (hardest: 8&thinsp;110&nbsp;s of solving, 5&thinsp;099&nbsp;s of checking). The four most uniform profiles,</p>
+<p class="eq">A = (8, 7<sup>5</sup>, 6<sup>13</sup>), &nbsp;B = (8, 7<sup>6</sup>, 6<sup>11</sup>, 5), &nbsp;C = (7<sup>8</sup>, 6<sup>10</sup>, 5), &nbsp;D = (7<sup>7</sup>, 6<sup>12</sup>),</p>
+<p>did not finish in 12.5 hours. For them we strengthen the formula and split the case.</p>
+
+<h2><span class="n">3</span>Mixed deletion cuts and anchor cubes</h2>
+<div class="lemma"><b>Lemma 2 (mixed cuts).</b> For every row <var>i</var> and column <var>j</var>, <var>r<sub>i</sub></var> + <var>c<sub>j</sub></var> − <var>x<sub>ij</sub></var> ≥ 121 − <var>z</var>(12, 18) ≥ 13, and for rows <var>i</var>, <var>i′</var> and columns <var>j</var>, <var>j′</var>, the four lines minus the ones at their four crossings carry at least 121 − <var>z</var>(11, 17) ≥ 25 ones.</div>
+<p>This is Lemma 1 with (<var>a</var>, <var>b</var>) = (1, 1) and (2, 2). For instance, in profile C every row has at least 8 ones (C has a column of degree 5), and in every profile a row with 7 ones has no one in a column of degree 6. Adding these clauses made the solver 3–7 times faster on the cases below.</p>
+<p><em>Anchor cubes.</em> In the canonical form the first column has the maximum degree <var>c</var> and, rows being lexicographic with that column most significant, its ones fill rows 1, …, <var>c</var> =: <var>B</var>. For every other column <var>j</var> let <var>i<sub>j</sub></var> = |col<sub><var>j</var></sub> ∩ <var>B</var>| and <var>o<sub>j</sub></var> = <var>c<sub>j</sub></var> − <var>i<sub>j</sub></var>.</p>
+<div class="lemma"><b>Lemma 3.</b> Every admissible matrix of the case satisfies
+<table class="plain" style="margin:2pt 0 2pt 1.5em;font-size:10.2pt"><tbody>
+<tr><td>(I)</td><td>Σ<sub><var>j</var></sub> C(<var>i<sub>j</sub></var>, 3) ≤ C(<var>c</var>, 3),</td><td>(III)</td><td>Σ<sub><var>j</var></sub> C(<var>i<sub>j</sub></var>, 2)&thinsp;<var>o<sub>j</sub></var> ≤ 2&thinsp;C(<var>c</var>, 2)&thinsp;(13−<var>c</var>),</td></tr>
+<tr><td>(II)</td><td>Σ<sub><var>j</var></sub> C(<var>o<sub>j</sub></var>, 3) ≤ 2&thinsp;C(13−<var>c</var>, 3),</td><td>(IV)</td><td>Σ<sub><var>j</var></sub> <var>i<sub>j</sub></var>&thinsp;C(<var>o<sub>j</sub></var>, 2) ≤ 2<var>c</var>&thinsp;C(13−<var>c</var>, 2),</td></tr>
+</tbody></table>
+and Σ<var>i<sub>j</sub></var> lies in a window fixed by the row cuts (the rows of <var>B</var> carry at least <var>c</var>(<var>cut</var><sub>1</sub>+1) − 1 ones when <var>cut</var><sub>2</sub> = 2<var>cut</var><sub>1</sub> + 1, and likewise the other rows).</div>
+<p>Each sum counts row triples of a given kind (inside <var>B</var>, outside, two inside and one out, one in and two out) by the columns containing them; each triple lies in at most two columns, and a triple inside <var>B</var> already lies in the first column. A <em>pattern</em> is, for each degree class of the other columns, the multiset of their <var>i<sub>j</sub></var>; a <em>cube</em> is the case formula plus “the first column is <var>B</var>” plus the pattern’s counts (for each class and threshold <var>t</var>, how many columns have <var>i<sub>j</sub></var> ≥ <var>t</var>). Every canonical matrix lies in the cube of its own pattern, and all patterns meeting Lemma 3 are listed (two independent enumerations agree): A 203, B 512, C 1&thinsp;254, D 509 cubes. Kissat 4.0.4 (<span class="tt">--unsat</span>, binary DRAT, drat-trim) refuted all cubes of A and B and 1&thinsp;065 of C and D whole; for the other 698 the proof outgrew what drat-trim can hold in 16&nbsp;GB.</p>
+
+<h2><span class="n">4</span>Sub-cubes</h2>
+<div class="lemma"><b>Lemma 4 (canonical column fixing).</b> In the canonical form, once columns 0, …, <var>k</var>−1 are fixed, the rows fall into groups with equal entries in those columns, each group consecutive and lexicographically ordered in the remaining columns. Hence column <var>k</var> has its ones at the start of every group and is determined by the number of its ones in each group.</div>
+<p>So the choices for columns 1, …, <var>d</var> form a finite tree of count vectors; we prune it only with necessary conditions — the column’s degree and the pattern’s remaining counts, at most two common rows with any two fixed columns, and lexicographic order among equal-degree columns. The leaves at depth <var>d</var> (<em>sub-cubes</em>) cover the cube. C’s 467 split cubes gave 28&thinsp;845 sub-cubes (43, 15&thinsp;249, 13&thinsp;553 at depths 1, 2, 3); D’s 231 gave 29&thinsp;341 (20, 7&thinsp;212, 21&thinsp;756, and 353 at depth 4 under one sub-cube that took more than an hour at depth 3). A sub-cube is the cube’s formula with the fixed columns as unit clauses.</p>
+
+<h2><span class="n">5</span>A linear relaxation with exact Farkas certificates</h2>
+<p>We extend Afrasyab’s block polytope [3, §5], which fixes one column, to all fixed columns of a sub-cube. Group the rows by their entries in the fixed columns; let <var>n<sub>g</sub></var> be the size of group <var>g</var>. The <em>type</em> τ of a remaining column records its number of ones in each group; let <var>y</var><sub><var>d</var>,τ</sub> ≥ 0 be the number of remaining columns of degree <var>d</var> and type τ. Every matrix of the sub-cube gives an integral solution of</p>
+<ul>
+<li>(E) for each degree class and each value <var>v</var>: the columns of that class with <var>v</var> ones in <var>B</var> number exactly what the pattern says, less the fixed ones;</li>
+<li>(T) for each multiset <var>t</var> of groups (an orbit of row triples): Σ <var>y</var><sub><var>d</var>,τ</sub> Π<sub><var>g</var></sub> C(τ<sub><var>g</var></sub>, <var>t<sub>g</sub></var>) ≤ (2 − κ<sub><var>t</var></sub>) Π<sub><var>g</var></sub> C(<var>n<sub>g</sub></var>, <var>t<sub>g</sub></var>), where κ<sub><var>t</var></sub> is the number of fixed columns containing such triples;</li>
+<li>(G) for each group: its rows carry at least <var>f</var>·<var>n<sub>g</sub></var> ones, where <var>f</var> = max(121 − <var>z</var>(12, 19), max<sub><var>j</var></sub>(121 − <var>z</var>(12, 18) − <var>c<sub>j</sub></var>)) is the row floor of Lemmas 1–2 (7 for D, 8 for C).</li>
+</ul>
+<p>If this system <var>A</var><var>y</var> ≤ <var>b</var>, <var>E</var><var>y</var> = <var>e</var>, <var>y</var> ≥ 0 has no real solution, Farkas’ lemma gives α ≥ 0 and β with <var>A</var><sup>T</sup>α + <var>E</var><sup>T</sup>β ≥ 0 and <var>b</var><sup>T</sup>α + <var>e</var><sup>T</sup>β &lt; 0, and the sub-cube is empty. We find a sparse such vector with HiGHS [17] (a vertex of an ℓ<sub>1</sub>-minimizing LP), make it rational, and verify it in exact integer arithmetic; the vector is the certificate. <b>32&thinsp;602 sub-cubes</b> (C 17&thinsp;359, D 15&thinsp;243) were closed this way without a solver. The fixed columns are essential: with the first column alone the relaxation is invariant under the row permutations fixing it, and every anchor pattern defines a feasible point (we checked all 2&thinsp;478 in exact arithmetic), so no certificate of this kind exists at cube level.</p>
+
+<h2><span class="n">6</span>SAT with proofs, and a gap in an LRAT checker</h2>
+<p>The other 25&thinsp;584 sub-cubes were refuted by Kissat 4.0.4 with drat-trim, or, from 23 October, by CaDiCaL 3.0.1 [13] writing an LRAT proof [15] into a pipe read by a checker while the proof is written (8&thinsp;504 sub-cubes): no proof on disk, and 1.4–1.8 times faster than Kissat plus drat-trim on medium parts. A part not refuted within 25 minutes at depth 2 (60 at depth 3) was split one column deeper.</p>
+<p><em>The checker.</em> The LRAT checker <span class="tt">lrat-check</span> of the drat-trim repository (commit 2e3b2dc0ecf9) reports “c VERIFIED” for the satisfiable formula {<var>x</var><sub>1</sub>, <var>x</var><sub>1</sub> ∨ <var>x</var><sub>2</sub>} with the one-line proof “<span class="tt">3 0 0</span>”, an empty clause with no hints. A clause whose hints yield no conflict is accepted when no clause contains the negation of its first literal (a pure-literal test); for the empty clause that literal does not exist and the test succeeds. Clause identifiers are also read into 32-bit integers (an identifier of 5·10<sup>9</sup> wraps around and verifies). We found this before using the checker for any certificate, and used <span class="tt">lrat-check-strict</span> (in the repository): identical except that every added clause, the empty one included, must follow by unit propagation through its hints, and out-of-range numbers are rejected. CaDiCaL’s proofs of our known-UNSAT parts verify under it, so they contain no RAT steps. Every LRAT result records the SHA-256 of both binaries, and the audit accepts LRAT results only after the checker refuses the bogus proof above.</p>
+
+<h2><span class="n">7</span>Audit</h2>
+<p>An audit, separate from the runs, rechecked the whole proof from the generator (25 October 2026, log in the repository): (i) the 30 profiles are exactly those the counting admits; (ii) for each whole profile, the formula regenerated today equals the certified one byte for byte, and drat-trim re-verified every kept proof; (iii) for each anchor profile, the patterns were re-enumerated and equal the stored list; every cube’s choices at its deepest depth were re-enumerated and each lies in or below a certified sub-cube; every Farkas certificate was re-verified exactly; every solver part’s formula was regenerated and compared. Seventy-two proofs drawn at random were re-verified from scratch (DRAT re-checks and LRAT re-solves). No problem was found.</p>
+
+<table class="avoid">
+<thead><tr><th>profile</th><th class="r">cubes</th><th class="r">whole</th><th class="r">split</th><th class="r">sub-cubes</th><th class="r">Farkas</th><th class="r">SAT (LRAT)</th><th class="r">problems</th></tr></thead>
+<tbody>
+<tr><td>26 others</td><td class="r">—</td><td class="r">26</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">0</td></tr>
+<tr><td>A (8, 7<sup>5</sup>, 6<sup>13</sup>)</td><td class="r">203</td><td class="r">203</td><td class="r">0</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">0</td></tr>
+<tr><td>B (8, 7<sup>6</sup>, 6<sup>11</sup>, 5)</td><td class="r">512</td><td class="r">512</td><td class="r">0</td><td class="r">—</td><td class="r">—</td><td class="r">—</td><td class="r">0</td></tr>
+<tr><td>C (7<sup>8</sup>, 6<sup>10</sup>, 5)</td><td class="r">1&thinsp;254</td><td class="r">787</td><td class="r">467</td><td class="r">28&thinsp;845</td><td class="r">17&thinsp;359</td><td class="r">11&thinsp;486 (4&thinsp;081)</td><td class="r">0</td></tr>
+<tr><td>D (7<sup>7</sup>, 6<sup>12</sup>)</td><td class="r">509</td><td class="r">278</td><td class="r">231</td><td class="r">29&thinsp;341</td><td class="r">15&thinsp;243</td><td class="r">14&thinsp;098 (4&thinsp;423)</td><td class="r">0</td></tr>
+</tbody></table>
+<div class="cap">Table 2. The certificate, by profile, as audited. About 440 hours of solving on one 8-core laptop (Apple M2, 16&nbsp;GB), 17–24 October 2026.</div>
+
+<h2><span class="n">8</span>Data and code</h2>
+<p>The repository <a href="https://github.com/Oleg-Fedorenko/zarankiewicz-13x19" style="color:inherit">github.com/Oleg-Fedorenko/zarankiewicz-13x19</a>, archived as doi:10.5281/zenodo.23637633, contains the generator and checkers (Python, with PySAT [18]); the build recipe and hashes of the solvers and checkers, with <span class="tt">lrat-check-strict.c</span>; for every cube and sub-cube, its record (route, solver, checker, verdict, times) and the SHA-256 of its certified formula; all Farkas certificates; the audit logs; the witness; and a standalone verifier that repeats (i)–(iii) of §7 from the repository alone and re-solves random parts. The DRAT proofs (577&nbsp;GB compressed) are kept by the author and available on request; LRAT proofs were checked while written and are not stored; any part can be regenerated and re-proved in minutes.</p>
+<p>In addition to the main result, the repository includes explicit witness matrices establishing certified lower bounds for 18 adjacent cells (for instance <var>z</var>(14, 23) ≥ 146, <var>z</var>(15, 22) ≥ 150 and <var>z</var>(15, 23) ≥ 156; the list is in <span class="tt">witness/README.md</span>). They were found independently and reproduce, cell by cell, the best bounds that [7, 8] obtained by heuristic search, and they exceed the bounds of [1, 2].</p>
+<p><em>Consequences.</em> With Theorem 1, Lemma 1 gives <var>z</var>(14, 19; 3, 3) ≤ 129 (128 is attained [7]); the same method is being applied to 14&thinsp;×&thinsp;19.</p>
+
+<h2><span class="n">9</span>Disclosure and acknowledgements</h2>
+<p>This result was obtained as a test task for AperioBot, an add-on for AI agents created by the author, a lawyer at the Aperio Bar Association; the witness matrices were found by its search laboratory.</p>
+<p><em>AI assistance.</em> This work was done with extensive help from AI systems. Claude (Anthropic) — Claude Opus 5.5 in Claude Code — wrote the encodings and programs, ran the computations and the audit, and drafted this note; independent Claude agents reviewed the code and checked the literature, and one of them found the gap in <span class="tt">lrat-check</span> described in §6. GLM proposed the anchor cubes and enumerated the patterns independently; a discussion with Claude Fable suggested the row-cut encoding. The author directed the work, decided each step and is responsible for the content. No step of the proof rests on a model’s word: each rests on a matrix, a program or a certificate that anyone can check.</p>
+<p>We thank the authors of Kissat, CaDiCaL, Glucose, drat-trim, HiGHS and PySAT, and the authors of [1–12] for their tables and matrices.</p>
+
+<h2>References</h2>
+<ol class="refs">
+<li>J. Bhan, N. Nobili, P. Langer, <em>New bounds for Zarankiewicz numbers via reinforced LLM evolutionary search</em>, arXiv:2605.01120v3 (2026).</li>
+<li>A. Saurabh, <em>Five improved lower bounds for Zarankiewicz numbers z(m,n;3,3)</em>, arXiv:2608.26603 (2026).</li>
+<li>K. Afrasyab, <em>Exact Zarankiewicz values on two finite frontier slices</em>, arXiv:2608.08154 (2026).</li>
+<li>S. Hou, <em>Seven exact finite Zarankiewicz numbers from a single 13 × 18 core</em>, arXiv:2608.08549 (2026).</li>
+<li>J. Tan, <em>An attack on Zarankiewicz’s problem through SAT solving</em>, arXiv:2203.02283 (2022).</li>
+<li>dfield, <em>finite-zarankiewicz-closures</em>, GitHub repository (2026).</li>
+<li>A. Norris, <em>Improved lower bounds for Zarankiewicz numbers z(m,n;3,3) from simulated annealing</em>, preprint, Zenodo, doi:10.5281/zenodo.22985558 (2026).</li>
+<li>B. Borsik, <em>Zarankiewicz-számok alsó becslése szemi random algoritmusokkal</em>, BSc thesis, Budapest University of Technology and Economics (2025); matrices at github.com/balazsborsik/Zarankiewicz.</li>
+<li>A. F. Collins, A. W. N. Riasanovsky, J. C. Wallace, S. P. Radziszowski, <em>Zarankiewicz numbers and bipartite Ramsey numbers</em>, J. Algorithms Comput. 47 (2016) 63–78.</li>
+<li>S. Davies, P. Gill, D. Horsley, <em>Improved upper bounds on Zarankiewicz numbers</em>, Discrete Math. 349 (2026) 114924; arXiv:2411.18842.</li>
+<li>J. Padhi, <em>New exact values and improved lower bounds for Zarankiewicz numbers z(m,n;3)</em>, SSRN 6960039 (2026); Zenodo deposit doi:10.5281/zenodo.20788643 deleted as retracted.</li>
+<li>J. Amaro, <em>zarankiewicz</em>, GitHub repository joaoamaro70/zarankiewicz (2026).</li>
+<li>A. Biere, T. Faller, K. Fazekas, M. Fleury, N. Froleyks, F. Pollitt, <em>CaDiCaL 2.0</em>, CAV 2024, LNCS 14681, 133–152; Kissat: github.com/arminbiere/kissat.</li>
+<li>N. Wetzler, M. J. H. Heule, W. A. Hunt Jr., <em>DRAT-trim: efficient checking and trimming using expressive clausal proofs</em>, SAT 2014, LNCS 8561, 422–429.</li>
+<li>L. Cruz-Filipe, M. J. H. Heule, W. A. Hunt Jr., M. Kaufmann, P. Schneider-Kamp, <em>Efficient certified RAT verification</em>, CADE 2017, LNCS 10395, 220–236.</li>
+<li>G. Audemard, L. Simon, <em>Predicting learnt clauses quality in modern SAT solvers</em>, IJCAI 2009, 399–404.</li>
+<li>Q. Huangfu, J. A. J. Hall, <em>Parallelizing the dual revised simplex method</em>, Math. Program. Comput. 10 (2018) 119–142.</li>
+<li>A. Ignatiev, A. Morgado, J. Marques-Silva, <em>PySAT: a Python toolkit for prototyping with SAT oracles</em>, SAT 2018, LNCS 10929, 428–437.</li>
+<li>T. Kővári, V. T. Sós, P. Turán, <em>On a problem of K. Zarankiewicz</em>, Colloq. Math. 3 (1954) 50–57.</li>
+</ol>
+</body>
+</html>

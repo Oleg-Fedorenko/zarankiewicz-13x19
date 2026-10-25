@@ -1,0 +1,61 @@
+{
+  "title": "The Zarankiewicz number z(13, 19; 3, 3) equals 120: a certified proof",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "description": "<p>We prove that the Zarankiewicz number z(13, 19; 3, 3) — the largest number of ones in a 13 × 19 0/1 matrix with no 3 × 3 submatrix of ones — equals 120. Matrices with 120 ones were known; the best published upper bound was 122.</p><p>The proof is computer-assisted and certified throughout: a counting argument leaves 30 column-degree profiles; 26 are refuted by SAT with DRAT proofs; the four most uniform profiles are split into 2 478 anchor cubes and 58 186 sub-cubes, each refuted either by an exact rational Farkas certificate for a linear relaxation (32 602) or by SAT with a DRAT or LRAT proof. The record contains the research note, the generator and checkers, every certificate record with the SHA-256 of its formula, all Farkas certificates, the audit logs, the witness matrix and a standalone verifier. It also documents a soundness gap in drat-trim's lrat-check (an empty clause with no conflict is accepted) and the strict variant used.</p><p>In addition, the record includes explicit witness matrices establishing certified lower bounds for 18 adjacent cells (for instance z(14,23) ≥ 146, z(15,22) ≥ 150, z(15,23) ≥ 156), found independently, reproducing the best bounds of Norris and Borsik and exceeding those of Bhan–Nobili–Langer and Saurabh.</p>",
+  "creators": [
+    {
+      "name": "Fedorenko, Oleg",
+      "affiliation": "Aperio Bar Association"
+    }
+  ],
+  "license": "cc-by-4.0",
+  "keywords": [
+    "Zarankiewicz problem",
+    "extremal combinatorics",
+    "K3,3-free bipartite graphs",
+    "SAT solving",
+    "DRAT",
+    "LRAT",
+    "Farkas certificate",
+    "computer-assisted proof"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/Oleg-Fedorenko/zarankiewicz-13x19",
+      "relation": "isSupplementedBy",
+      "scheme": "url"
+    },
+    {
+      "identifier": "10.5281/zenodo.22985558",
+      "relation": "references",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "arXiv:2411.18842",
+      "relation": "references",
+      "scheme": "arxiv"
+    },
+    {
+      "identifier": "arXiv:2608.08154",
+      "relation": "references",
+      "scheme": "arxiv"
+    },
+    {
+      "identifier": "arXiv:2608.08549",
+      "relation": "references",
+      "scheme": "arxiv"
+    },
+    {
+      "identifier": "arXiv:2203.02283",
+      "relation": "references",
+      "scheme": "arxiv"
+    },
+    {
+      "identifier": "arXiv:1604.01257",
+      "relation": "references",
+      "scheme": "arxiv"
+    }
+  ],
+  "notes": "This work was a test task for AperioBot, an add-on for AI agents created by the author, a lawyer at the Aperio Bar Association. AI assistance is disclosed in Section 9 of the research note. The repository also holds witness matrices for 18 neighbouring cells."
+}

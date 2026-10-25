@@ -1,0 +1,37 @@
+[
+ {
+  "folder": "profile-7-6-6-6-6-6-6-6-6-6-6-6-6-6-6-6-6-6",
+  "record": {
+   "profile": [
+    7,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6
+   ],
+   "pairs": null,
+   "variables": 193050,
+   "clauses": 384581,
+   "solve seconds": 21150.6,
+   "glucose exit": 20,
+   "verdict": "UNSAT",
+   "proof bytes": 2718480544,
+   "check seconds": 26299.5,
+   "drat-trim": "VERIFIED"
+  },
+  "cnf sha256": "f8a12f33d2071150cd7c04948c77d54609c3273925f9d10706be6573ee26449d"
+ }
+]

@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this proof, its data or its code, please cite it as below."
+title: "The Zarankiewicz number z(13, 19; 3, 3) equals 120: a certified proof"
+type: dataset
+authors:
+  - family-names: "Fedorenko"
+    given-names: "Oleg"
+    # orcid: "https://orcid.org/0000-0000-0000-0000"
+version: "1.0"
+date-released: "2026-10-25"
+license: ["MIT", "CC-BY-4.0"]
+repository-code: "https://github.com/Oleg-Fedorenko/zarankiewicz-13x19"
+doi: "10.5281/zenodo.23637633"
+keywords: ["Zarankiewicz problem", "extremal combinatorics", "bipartite graphs", "K3,3", "SAT", "DRAT", "LRAT", "Farkas certificate", "computer-assisted proof"]
+abstract: >-
+  A certified proof that the largest number of ones in a 13 x 19 0/1 matrix with no 3 x 3 all-ones submatrix is 120.
+  The proof splits the problem into 30 column-degree profiles, 2 478 anchor cubes and 58 186 sub-cubes, each refuted by
+  an exact rational Farkas certificate of a linear relaxation or by SAT with a DRAT or LRAT proof; a standalone
+  verifier re-checks it from this record alone.
