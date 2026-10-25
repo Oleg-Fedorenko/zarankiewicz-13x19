@@ -15,7 +15,7 @@ checks it from this repository alone.
   reproduce the best bound of Norris (2026) and Borsik (2025), and they exceed the bounds of Bhan–Nobili–Langer and
   Saurabh (2026). Matrices for the eight other cells the same search covered are in `witness/other-cells/`.
 - **Origin:** a test task for AperioBot, an add-on for AI agents created by the author, a lawyer at
-  Aperio Law Firm (Код ЄДРПОУ: 44031724); AI assistance is disclosed in §9 of the note.
+  Aperio Law Firm (EDRPOU code 44031724); AI assistance is disclosed in §9 of the note.
 
 ## How the proof goes
 

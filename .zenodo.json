@@ -6,7 +6,7 @@
   "creators": [
     {
       "name": "Fedorenko, Oleg",
-      "affiliation": "Aperio Law Firm, Код ЄДРПОУ: 44031724"
+      "affiliation": "Aperio Law Firm, EDRPOU code 44031724"
     }
   ],
   "license": "cc-by-4.0",
@@ -57,5 +57,5 @@
       "scheme": "arxiv"
     }
   ],
-  "notes": "This work was a test task for AperioBot, an add-on for AI agents created by the author, a lawyer at Aperio Law Firm (Код ЄДРПОУ: 44031724). AI assistance is disclosed in Section 9 of the research note. The repository also holds witness matrices for 18 neighbouring cells."
+  "notes": "This work was a test task for AperioBot, an add-on for AI agents created by the author, a lawyer at Aperio Law Firm (EDRPOU code 44031724). AI assistance is disclosed in Section 9 of the research note. The repository also holds witness matrices for 18 neighbouring cells."
 }
