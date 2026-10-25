@@ -188,6 +188,9 @@ if __name__ == "__main__":
     others = sorted(p for p in (ROOT / "witness").glob("z-*.txt") if p.name != "z-13-19-120.txt")
     refused = [p.name for p in others if not admissible(p, *map(int, p.stem.split("-")[1:4]))]
     check(f"5b. {len(others)} witnesses of the neighbouring cells, each admissible with the stated number of ones", len(others) == 18 and not refused, {"refused": refused})
+    more = sorted((ROOT / "witness" / "other-cells").glob("z-*.txt"))
+    refused = [p.name for p in more if not admissible(p, *map(int, p.stem.split("-")[1:4]))]
+    check(f"5c. {len(more)} witnesses of the other searched cells (witness/other-cells), each admissible", len(more) == 8 and not refused, {"refused": refused})
     if "--resolve" in sys.argv:
         k = int(sys.argv[sys.argv.index("--resolve") + 1]); tools = ROOT / "tools"
         drawn = random.Random(2610).sample(sat_parts, min(k, len(sat_parts)))

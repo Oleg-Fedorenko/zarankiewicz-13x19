@@ -42,7 +42,7 @@ python3 verify_release.py --workers 8
 checks, from this repository alone: the bounds (1); the 12 × 18 link — one profile, and its formula's SHA-256 equals
 the certified one (2); the 30 profiles and the 26 whole ones (3); for every anchor profile, the patterns, every cube,
 the coverage of every split cube by its sub-cubes, every Farkas certificate (exact arithmetic), and the SHA-256 of
-every solver formula (4); the 19 witness matrices (5). About an hour on 8 cores. With `--resolve 12` it also solves 12 random parts
+every solver formula (4); the 27 witness matrices (5). About an hour on 8 cores. With `--resolve 12` it also solves 12 random parts
 again with CaDiCaL and checks each LRAT proof while it is written; build the two tools first (`tools/BUILD.md`).
 The verifier generates every formula with the Collins bounds only (`code/collins.py`), so a matching hash shows that
 the certified formula is exactly the one these bounds give.
@@ -67,11 +67,12 @@ prints `13 120 True`.
 | `data/anchor/{A,B,C,D}/` | `patterns.json` (the cubes), `cubes.jsonl` (one record per cube), `subcubes.jsonl` (one per sub-cube a split cube lists), `farkas.jsonl.gz` (the Farkas certificates) |
 | `audit/` | the cell audit of 25 October 2026 (`audit-13x19-121.json`, log `audit-13x19-121-final.txt`) and the per-profile audits |
 | `tools/` | `lrat-check-strict.c` and its patch against drat-trim's `lrat-check`, and how to build the solvers and checkers |
-| `witness/` | the 120-matrix, and the matrices of the 18 neighbouring cells (`witness/README.md`) |
+| `witness/` | the 120-matrix, the matrices of the 18 neighbouring cells (`witness/README.md`), and of the eight other cells the same search covered (`witness/other-cells/`) |
 
 A record of a solver part names the encoding, the solver, the checker and its verdict, the times, and the SHA-256 of
-the DIMACS formula that was solved. The DRAT proofs themselves (577 GB compressed) are not here; the author keeps them
-and shares any on request. LRAT proofs were checked while being written and were not stored. Any part can be
+the DIMACS formula that was solved. The DRAT proofs of the 26 whole profiles and of the 12 × 18 link (3.4 GB, with
+their formulas and a SHA-256 manifest) are in the Zenodo record, doi:10.5281/zenodo.23637633; the proofs of the cubes
+and sub-cubes (577 GB compressed) are not published — the author keeps them and shares any on request. LRAT proofs were checked while being written and were not stored. Any part can be
 regenerated (`code/anchor_cubes.py`, `code/subcubes.py`) and re-proved in minutes.
 
 ## A note on `lrat-check`
