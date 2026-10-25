@@ -1,5 +1,7 @@
 # z(13, 19; 3, 3) = 120 — a certified proof
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23637633.svg)](https://doi.org/10.5281/zenodo.23637633)
+
 Oleg Fedorenko · research note and data: [doi:10.5281/zenodo.23637633](https://doi.org/10.5281/zenodo.23637633)
 
 The Zarankiewicz number z(m, n; 3, 3) is the largest number of ones in an m × n 0/1 matrix with no 3 × 3 submatrix
