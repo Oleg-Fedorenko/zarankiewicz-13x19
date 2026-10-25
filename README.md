@@ -10,8 +10,10 @@ checks it from this repository alone.
 - **Lower bound:** [`witness/z-13-19-120.txt`](witness/z-13-19-120.txt), a 13 × 19 matrix with 120 ones and no 3 × 3
   block of ones (row degrees 12, 9¹², column degrees 8, 7⁴, 6¹⁴).
 - **Upper bound:** no such matrix has 121 ones. The best published upper bound before this work was 122.
-- **Also:** witness matrices for the 18 neighbouring cells of A. Norris's table (`witness/README.md`), each checked by the
-  verifier — for instance z(14, 23) ≥ 146, z(15, 22) ≥ 150, z(15, 23) ≥ 156.
+- **Also:** witness matrices for the 18 neighbouring cells (`witness/README.md`) — for instance z(14, 23) ≥ 146,
+  z(15, 22) ≥ 150, z(15, 23) ≥ 156 — each checked by the verifier. They were found independently; in every cell they
+  reproduce the best bound of Norris (2026) and Borsik (2025), and they exceed the bounds of Bhan–Nobili–Langer and
+  Saurabh (2026). Matrices for the eight other cells the same search covered are in `witness/other-cells/`.
 - **Origin:** a test task for AperioBot, an add-on for AI agents created by the author, a lawyer at the Aperio Bar
   Association; AI assistance is disclosed in §9 of the note.
 
@@ -50,10 +52,11 @@ the certified formula is exactly the one these bounds give.
 To check the witness alone, nothing but Python is needed:
 
 ```
-python3 -c "import itertools as I;R=[{j for j,x in enumerate(l.strip()) if x=='1'} for l in open('witness/z-13-19-120.txt') if l.strip()];print(len(R),sum(map(len,R)),all(len(a&b&c)<3 for a,b,c in I.combinations(R,3)))"
+python3 -c "import itertools as I;L=[l.strip() for l in open('witness/z-13-19-120.txt') if l.strip()];R=[{j for j,x in enumerate(l) if x=='1'} for l in L];print(len(L),all(len(l)==19 and set(l)<=set('01') for l in L),sum(map(len,R)),all(len(a&b&c)<3 for a,b,c in I.combinations(R,3)))"
 ```
 
-prints `13 120 True`.
+prints `13 True 120 True`: 13 rows, each of 19 characters 0 or 1, 120 ones, and no three rows sharing three columns
+(which is the same as no 3 × 3 block of ones).
 
 ## Layout
 
